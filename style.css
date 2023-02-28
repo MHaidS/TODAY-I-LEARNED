@@ -11,6 +11,11 @@ body {
   padding: 48px 64px;
 }
 
+.hidden {
+  /* 'display:flex' of .fact-form is overriding this; adding '!important' will solve this */
+  display: none !important;
+}
+
 /* MAIN LAYOUT */
 .container {
   max-width: 1500px;
@@ -49,7 +54,6 @@ body {
   height: 68px;
 }
 
-/* block-lvl element */
 h1 {
   font-size: 42px;
   text-transform: uppercase;
@@ -96,7 +100,7 @@ h1 {
 
 .vote-buttons {
   margin-left: auto;
-  /* (0 or 1) prevents the flex-items(buttons) fr shrinking; to make sure that the icon & number would stay on 1 line */
+  /* (0 or 1) prevents the flex-items(buttons) fr shrinking; to make sure that the icon & number would stay on the same line */
   flex-shrink: 0;
 
   display: flex;
@@ -154,7 +158,6 @@ ul {
 }
 
 .btn:hover {
-  /* 24.1 */
   transform: scale(110%) rotate(-2deg);
   /* add transition to parent element */
 }
@@ -203,7 +206,6 @@ ul {
 }
 
 .fact-form input:first-child {
-  /* background-color: red; */
   /* 0 or 1; will take up the space it wishes to fill up */
   flex-grow: 1;
 }
