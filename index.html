@@ -1,3 +1,5 @@
+<!-- IN PROGRESS! -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- GOOGLE FONTS -->
-    <!-- must be placed before one's own CSS file -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Sono:wght@400;600&display=swap" rel="stylesheet">
@@ -21,7 +22,6 @@
           <img src="logo.png" height="68" width="68" alt="Today I Learned Logo" />
           <h1>Today I Learned</h1>
         </div><!-- class="logo" -->
-
         <button class="btn btn-large btn-open">Share a fact</button>
       </header>
 
@@ -61,7 +61,7 @@
         </aside>
 
         <section>
-          <ul>
+          <ul class="facts-list">
             <li class="fact">
               <p>
                 React is being developed by Meta (formerly facebook)
@@ -97,11 +97,10 @@
                 <button>👍 11</button>
 
                 <button>🤯 2</button>
-
                 <button>⛔️ 0</button>
               </div>
             </li><!-- class="fact" -->
-          </ul>
+          </ul><!-- class="facts-list" -->
         </section>
       </main>
     </div><!-- class="container" -->
@@ -118,6 +117,12 @@
 <!-- 
   **** Creating Your 1st Database ****
   https://supabase.com/
+-->
 
-  
+<!-- 
+   47. Loading Data w/ fetch & async/await
+       => make sure 'SELECT: Enable read access for all users' is enabled in SUPABASE
+       => API docs === 'facts' under Tables & Views === select 'Bash' === ProjectAPIkey: anon(public)
+
+       [Settings == API == API Settings]
  -->

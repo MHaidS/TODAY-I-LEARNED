@@ -100,7 +100,7 @@ h1 {
 
 .vote-buttons {
   margin-left: auto;
-  /* (0 or 1) prevents the flex-items(buttons) fr shrinking; to make sure that the icon & number would stay on the same line */
+  /* (0 or 1) prevents the flex-items(buttons) fr shrinking; to make sure that the icon & number will stay on the same line */
   flex-shrink: 0;
 
   display: flex;
