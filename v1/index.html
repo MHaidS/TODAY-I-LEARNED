@@ -119,10 +119,76 @@
   https://supabase.com/
 -->
 
-<!-- 
-   47. Loading Data w/ fetch & async/await
-       => make sure 'SELECT: Enable read access for all users' is enabled in SUPABASE
-       => API docs === 'facts' under Tables & Views === select 'Bash' === ProjectAPIkey: anon(public)
 
-       [Settings == API == API Settings]
- -->
+
+ <!-- 
+  ! check on TERMINAL:
+    npm -v   ==>   to check current version of npm on system
+    node -v  ==>   to check current version of node on system
+    sudo n lts ==> Use this command to install/update the latest LTS node release.
+  -->
+ <!-- 
+  50. Installing Node.js & Setting Up A React Project
+    1) Install Node.js
+      => [for 1st-time users] go to 'https://nodejs.org/en/' then click the one w/ 'LTS' & install to your sys
+    2) Go to folder where project resides in VS CODE terminal [View -> Terminal] then run command 'npm -v' to see if npm is installed & verify version as well 
+
+    *************************************************************************
+    **************************************************************************
+
+    3) Set up the React proj. using 'create react app' by typing in 'npx create-react-app today-i-learned' [npx create-react-app & the name of the project], hit return key & this will download packages fr the npm repository.; If it doesn't work or error has been recvd, add 'sudo' before the command used previously
+
+    *************************************************************************
+        *********************************************************************
+
+        4) Check the project folder TODAY-I-LEARNED: this now reflects a new folder called 'today-i-learned', the name given to this React project. Create another folder named 'v1' then grab the ff files & transfer inside it: data.js, index.html, logo.png, script.js & style.js 
+
+        5) Grab everything inside the 'today-i-learned' folder so that they are all outside w/ the 'v1' folder; when it's already empty, delete the 'today-i-learned' folder; So in the proj folder TODAY-I-LEARNED, the files 'v1' folder has the files created previously, plus the files that are just installed fr npm repo
+
+        6) project folder TODAY-I-LEARNED: {public: 'index.html' & src: 'index.js' & 'App.js'}
+        => node_modules folder ===> contains the npm packages that were installed
+        => public folder ===> only retain 'index.html' & delete everything else [favicon.ico, logo192.png, logo512.png, manifest.json, robots.txt]
+        => src ===> only retain 'index.js' & 'App.js' & delete everything else 
+
+        =>
+
+        7) {public: 'index.html' & src: 'index.js' & 'App.js'}
+        => index.js ===> the 1st file that will be loaded by the react application; delete the unnecessary lines & what shd remain are:
+
+        *********************************************************************
+        import React from "react";
+        import ReactDOM from "react-dom/client";
+        import App from "./App";
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        );
+        *********************************************************************
+        
+        8) => {src: App.js} ===> delete everything & this is what shd remain ('<h1>Hello World</h1>;' has been added afterwards for test purposes):
+
+          *********************************
+          function App() {
+            return <h1>Hello World</h1>;
+          }
+
+          export default App;
+          *********************************
+     
+        9) => {public: 'index.html' } ==> retain the ff code & delete everythins else:
+
+        *********************************
+
+        
+
+        *********************************
+
+        10) Turn off 'Live Server' 
+        =====> TERMINal: npm run start
+        =====> BROWSER:
+               address bar: http://localhost:3000/
+               Hello World
+  -->
