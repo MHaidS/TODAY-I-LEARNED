@@ -1,5 +1,4 @@
-<!-- 50. Installing Node.js & Setting Up A React Project -->
-<!-- ===> delete the unnecessary lines -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,16 +11,25 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- 52.7 comment out this line & the error message in React Dev Tools will be goine -->
+    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
     
-    <title>React App</title>
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Sono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- <title>React App</title> -->
+    <title>Today I Learned!
+      <!-- Built using HTML for app skeleton, CSS for styling, Supabase for storing the app data, JS for making the app interactive & React to synchronize user interface w/ data -->
+    </title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+
+    <!-- 54.20. this is similar to '<div class="container">' on v1=>index.html; this means v1=>style.css will have to be refactored -->
     <div id="root"></div>
 
   </body>
