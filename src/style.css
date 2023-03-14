@@ -18,7 +18,7 @@ body {
 
 /* MAIN LAYOUT */
 /* 54.20. '<div id="root"></div>' is similar to '<div class="container">' on v1=>index.html; this means v1=>style.css will have to be refactored ===> fr '.container' to '#root' */
-/* .container { */
+
 .#root {
   max-width: 1500px;
   /* background-color: orangered; */
