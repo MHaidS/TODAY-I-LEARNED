@@ -16,6 +16,16 @@ body {
   display: none !important;
 }
 
+/* 63. Creating a Loader Component */
+/* 63.9. in order to see this, temporarily comment out the 'setIsLoading(false)' in useEffect */
+.message {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
 /* MAIN LAYOUT */
 /* 54.20. '<div id="root"></div>' is similar to '<div class="container">' on v1=>index.html; this means v1=>style.css will have to be refactored ===> fr '.container' to '#root' */
 
