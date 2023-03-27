@@ -40,7 +40,6 @@ function App() {
   const [showForm, setShowForm] = useState(false);
 
   const [facts, setFacts] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
   const [currentCategory, setCurrentCategory] = useState("all");
 
@@ -60,7 +59,6 @@ function App() {
 
         if (!error) setFacts(facts);
         else alert(`There was a problem getting data`);
-
         setIsLoading(false);
       }
 
@@ -81,8 +79,6 @@ function App() {
         <CategoryFilter setCurrentCategory={setCurrentCategory} />
 
         {isLoading ? <Loader /> : <FactList facts={facts} />}
-
-        {/* 61.1.c. pass facts & setFacts as props then go to FactList() to receive them */}
       </main>
     </>
   );
@@ -102,7 +98,6 @@ function Header({ showForm, setShowForm }) {
 
         <h1>{appTitle}</h1>
       </div>
-
       <button
         className="btn btn-large btn-open"
         onClick={() => setShowForm((show) => !show)}
@@ -123,7 +118,7 @@ const CATEGORIES = [
   { name: "history", color: "#f97316" },
   { name: "news", color: "#8b5cf6" },
 ];
-// 60.2.fr. stackoverflow: Check if a JavaScript string is a URL
+
 function isValidHttpUrl(string) {
   let url;
   try {
@@ -137,54 +132,46 @@ function isValidHttpUrl(string) {
 function NewFactForm({ setFacts, setShowForm }) {
   const [text, setText] = useState("");
 
-  // 60.2. create dummy data on useState
   const [source, setSource] = useState("http://example.com");
   const [category, setCategory] = useState("");
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const textLength = text.length;
 
-  function handleSubmit(e) {
-    // 60. Adding a New Fact - Part 1
-    // 60.1. *** Prevent browser reload
+  async function handleSubmit(e) {
+    // 1. *** PREVENT BROWSER RELOAD ***
     e.preventDefault();
-    console.log(text, source, category); // aaa bbb science
+    console.log(text, source, category); // amazing http://example.com technology
+    // aaa bbb science
 
-    // 60.2. *** Check if data is valid. If so, create a new fact
-    // ===> falsy values are values that are converted to false when they are used in a condition like an 'if stmt'; an empty string ('') is an ex. of a falsy value
-    // if (text) console.log(`there is data`); // this is only going to be logged on the console if something has been entered & form submitted
-    // aaa bbb finance
-    // there is data
-    // if (text && source && category && textLength <= 200)
-    //   console.log(`there is valid data`); // will only be logged on the console if something is typed in the text & source & something is selected in category; this is logged in even if only text is typed for the source; however, source must be a url; check google how to check if a value entered is a url, found something on stackoverflow; copy & past code outside of the component though
+    // 2. *** CHECK IF DATA IS VALID. If so, create a new fact ***
 
-    // call isValidHttpUrl & pass in source
     if (text && isValidHttpUrl(source) && category && textLength <= 200) {
-      // console.log(`there is valid data`);
-      // aaa google.com science ====> only what was typed is logged on the console
-      // ddd http://www.google.com finance ====> url must include http:// or type in dummy data on the useState
-      // there is valid data
+      //  xxx CREATE A NEW FACT OBJECT xxx
 
-      // 60.3. *** Create a new fact object
-      const newFact = {
-        // must be randomly generated, not ideal but we will get the ids later fr Supabase
-        id: Math.round(Math.random * 10000000),
-        // we can just write text as is, same w/ the source & category, bec. the variables are already called w/ the same name
-        text,
-        source,
-        category,
-        votesInteresting: 0,
-        votesMindblowing: 0,
-        votesFalse: 0,
-        createdIn: new Date().getFullYear(),
-      };
+      // 3. *** UPLOAD FACT TO SUPABASE & RECEIVE THE NEW FACT OBJECT ***
 
-      setFacts((facts) => [newFact, ...facts]);
+      setIsUploading(true);
+      const { data: newFact, error } = await supabase
+        .from("facts")
+        .insert([{ text, source, category }])
+        .select();
 
+      setIsUploading(false);
+
+      // 4. *** ADD THE NEW FACT TO THE UI: add the fact to state ***
+
+      setFacts((facts) => [newFact[0], ...facts]);
+
+      // 5. *** RESET INPUT FIELDS ***
       setText("");
       setSource("");
       setCategory("");
 
-      setShowForm(false);
+      // 6. *** CLOSE THE FORM ***
+
+      setShowForm(true);
     }
   }
 
@@ -204,9 +191,14 @@ function NewFactForm({ setFacts, setShowForm }) {
         type="text"
         placeholder="Trustworthy source..."
         onChange={(e) => setSource(e.target.value)}
+        disabled={isUploading}
       />
 
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        disabled={isUploading}
+      >
         <option value="">Choose category:</option>
 
         {CATEGORIES.map((cat) => (
@@ -216,19 +208,17 @@ function NewFactForm({ setFacts, setShowForm }) {
         ))}
       </select>
 
-      <button className="btn btn-large">Post</button>
+      <button className="btn btn-large" disabled={isUploading}>
+        Post
+      </button>
     </form>
   );
 }
 
 function CategoryFilter({ setCurrentCategory }) {
-  // 55. Rendering the List of Categories
-  // 55.1. Copy 1 of the <li></li>'s in <aside></aside> of v1=>index.html & edit as needed: class to className & the background-color as well, entering JS mode, providing an obj to the style; but what we want to do is render a list of btns based on the CATEGORIES[] array
-
   return (
     <aside>
       <ul>
-        {/* 55.7. For the 'All' btn, grab the code fr v1=>index.html & refactor as needed */}
         <li className="category">
           <button
             className="btn btn-all-categories"
@@ -238,24 +228,13 @@ function CategoryFilter({ setCurrentCategory }) {
           </button>
         </li>
 
-        {/* 55.3. We don't want to manually place the li's here, instead we want to loop over the elements in the CATEGORIES[] array & then render 1 list item for each of them */}
-        {/* 55.4. We'll take the CATEGORIES[] array & map: we are creating a new array w/c will contain for each element 1 pc of JSX w/c will be the list item; let's call the current element, each of them a 'cat' then return 1 list item; we will no longer create a separate component for each of the 'cat' item since this is just a sumple code */}
         {CATEGORIES.map((cat) => (
-          // 55.8. Let's add the keys; we are inside of a map so the <li></li> element will be created multiple times & in order for React to optimize something internally, we need to give it a key prop; although both the name & color are unique, it makes more sense to use the name as the key; The error message in React Dev Tools: 'react-jsx-dev-runtime.development.js:87 Warning: Each child in a list should have a unique "key" prop.' is now gone after the key prop has been added on the <li></li>
-          // <li className="category">
           <li key={cat.name} className="category">
-            {/* <button
-              className="btn btn-category"
-              // 55.6. Refactor to reflect the corresponding color for each category
-              style={{ backgroundColor: cat.color }}
-            > */}
             <button
               className="btn btn-category"
               style={{ backgroundColor: cat.color }}
               onClick={() => setCurrentCategory(cat.name)}
             >
-              {/* 55.5. Refactor to reflect the names for each btn */}
-
               {cat.name}
             </button>
           </li>
@@ -269,7 +248,7 @@ function FactList({ facts }) {
   if (facts.length === 0) {
     return (
       <p className="message">
-        No facts for this categorly yet. Create the first one!
+        No facts for this category yet. Create the first one!
       </p>
     );
   }
