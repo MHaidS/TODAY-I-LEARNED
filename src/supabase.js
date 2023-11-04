@@ -16,5 +16,5 @@ const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrdmZpZmFqYmZ0cXVrenpvcWlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzc0ODM4MzUsImV4cCI6MTk5MzA1OTgzNX0.Qx_ZZVtUgfE05GZUxvnxk5g9STCZJApLtUjcY90J8gk";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// 62.7. Rt now, App.js does know that supabase.js exists & esp. of the supabase variable; export the variable fr here then go back to App.js & import this fr. there
+// *** Rt now, App.js does know that supabase.js exists & esp. of the supabase variable; export the variable fr here then go back to App.js & import this fr. there ***
 export default supabase;

@@ -8,7 +8,8 @@ body {
   background-color: #292524;
   color: #fafaf9;
   font-family: "Sono", sans-serif;
-  padding: 48px 64px;
+  /* padding: 48px 64px; */
+  padding: 48px 64px 0px;
 }
 
 .hidden {
@@ -16,7 +17,7 @@ body {
   display: none !important;
 }
 
-/* 63. Creating a Loader Component */
+/* *** Creating a Loader Component *** */
 /* 63.9. in order to see this, temporarily comment out the 'setIsLoading(false)' in useEffect */
 .message {
   text-align: center;
@@ -26,10 +27,17 @@ body {
   margin-top: 24px;
 }
 
+/* // ......... */
+.disputed {
+  color: #ef4444;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
 /* MAIN LAYOUT */
 /* 54.20. '<div id="root"></div>' is similar to '<div class="container">' on v1=>index.html; this means v1=>style.css will have to be refactored ===> fr '.container' to '#root' */
 
-.#root {
+#root {
   max-width: 1500px;
   /* background-color: orangered; */
   margin: 0 auto;
@@ -46,12 +54,23 @@ body {
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: 48px;
+
+  /* // ........ */
+  height: calc(100vh - 48px - 68px - 40px);
 }
 
 @media (max-width: 900px) {
   .main {
     grid-template-columns: 1fr;
+    /* // ........ */
+    height: auto;
   }
+}
+
+/* // ........ */
+section {
+  overflow: scroll;
+  padding-bottom: 40px;
 }
 
 /* ELEMENTS */
@@ -132,8 +151,14 @@ h1 {
   transition: 0.3s;
 }
 
+/* 66.22. ... so '.vote-buttons' is how we select a btn & 'button:hover' is how we define that hover, that special background color where it becomes dark... so this 'hover' is a so-called pseudo-class & in CSS, there is also a pseudo class that we can use for when the btn is disabled... so on the browser, let's inspect & check on the 'Elements' tab & expand the 'fact' that we have been updating, click on the '👍' btn & you'll see for a moment that it is 'disabled' but this is gone immediately & the value gets updated ( number of votes increases ) ...   */
 .vote-buttons button:hover {
   background-color: #292524;
+  /* add transition to parent element */
+}
+/* 66.23. ... so we can style that status, 'disabled', & then give it the same background color as the rest of the list items... go back to the browser, click on the '👍' btn again & now it looks quite disabled, so that issue is fixed as well...  */
+.vote-buttons button:disabled {
+  background-color: #44403c;
   /* add transition to parent element */
 }
 
@@ -214,7 +239,7 @@ ul {
 }
 
 .fact-form input::placeholder {
-  color: ##a8a29e;
+  color: #a8a29e;
 }
 
 .fact-form input:first-child {
@@ -230,6 +255,7 @@ ul {
 
 @media (max-width: 1000px) {
   body {
+    /* ??? UNCOMMENT LATER ??? */
     padding: 32px 48px;
   }
 
