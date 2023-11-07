@@ -8,6 +8,7 @@ body {
   background-color: #292524;
   color: #fafaf9;
   font-family: "Sono", sans-serif;
+  /* padding: 48px=>top; 64px=>left&right; 0px=>bottom */
   /* padding: 48px 64px; */
   padding: 48px 64px 0px;
 }
@@ -28,6 +29,7 @@ body {
 }
 
 /* // ......... */
+/* 68.3. ... let's give it a red color, make it a bit bold, 600, & give it some margin to the right */
 .disputed {
   color: #ef4444;
   font-weight: 600;
@@ -36,11 +38,12 @@ body {
 
 /* MAIN LAYOUT */
 /* 54.20. '<div id="root"></div>' is similar to '<div class="container">' on v1=>index.html; this means v1=>style.css will have to be refactored ===> fr '.container' to '#root' */
-
+/* 68.4. ... one thing that is diff. fr the orig. app is that everything scrolls when scrolling the mouse when everything shd stay in place except for the list of facts but this can be resolved using CSS ... so there are 2 things that we need to do for that ... 1st, we need to define that the entire container on the left needs to have exactly the height of the viewport, so the part that is visible on the browser, we call that the viewport & that element is the 'root'... 6:04 ... now, we also need to go to the closest child that contains the list of facts, <section> & then do something w/ it... but we need to define the height of the <main> element 1st (w/in it are <aside>&<section>) then place the 'overflow: scroll' in <section> ...  */
 #root {
   max-width: 1500px;
   /* background-color: orangered; */
   margin: 0 auto;
+  height: 80vh;
 }
 
 .header {
@@ -50,13 +53,17 @@ body {
   justify-content: space-between;
 }
 
+/* 68.5. ... if we set the height to 80vh the <section> w/ the list of facts looks kind of cuts off the list at the bottom so let's fix that by adding padding-bottom to <section> ...  */
 .main {
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: 48px;
-
+  /* background-color: red; */
   /* // ........ */
+  /* 68.7. ... so we need to calc the exact height of <main> by using the calc() function...so let's write 100vh, w/c would be the emtire height of the screen's entirety...but now we need to subtract the height of the header & the paddings what we want to be in the end is the entire space fr the bottom to the top for the <main> element...so minus the height of header w/c is 68px...then we also need to subtract the 40px between the <header>&<main>...& also the padding on the top of the page <body>, 48px... but we also need to set the padding-bottom of the body to 0px so we can have it really come here all the way to the bottom...& there is some media query somewhere that is changing the padding... */
+  /* 68.9. ... let's recalculate the height of our <main>...the entire height of the element is 100vh...less 48px for the padding-top of the body...less 68px for tte height of the header...then 40px for the header's margin-bottom... let's scroll on the part where <aside> is & it's not scrolling up & down at all... but it does on the part where the <section> is... 12.54 ... now go back to App.js .... */
   height: calc(100vh - 48px - 68px - 40px);
+  /* height: 80vh; */
 }
 
 @media (max-width: 900px) {
@@ -68,6 +75,7 @@ body {
 }
 
 /* // ........ */
+/* 68.6. ... add padding-bottom & we also need to calc the exact height by using the calc function in <main>... */
 section {
   overflow: scroll;
   padding-bottom: 40px;
@@ -254,10 +262,11 @@ ul {
 }
 
 @media (max-width: 1000px) {
-  body {
-    /* ??? UNCOMMENT LATER ??? */
-    padding: 32px 48px;
-  }
+  /* body { */
+  /* ??? UNCOMMENT LATER ??? */
+  /* 68.8. ... we need to deactivate this now... */
+  /* padding: 32px 48px; */
+  /* } */
 
   .fact-form {
     flex-direction: column;
@@ -267,5 +276,32 @@ ul {
   .fact-form input,
   .fact-form select {
     width: auto;
+  }
+}
+
+/* 67. DISPLAYING THE APP ON ALL MOBILE PHONES */
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 24px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .fact-form {
+    padding: 16px;
+  }
+
+  .fact {
+    padding: 12px 16px;
   }
 }

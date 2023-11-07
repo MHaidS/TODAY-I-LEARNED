@@ -1,0 +1,183 @@
+<!-- IN PROGRESS! -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Sono:wght@400;600&display=swap" rel="stylesheet" />
+
+    <link href="style.css" rel="stylesheet" />
+
+    <title>Today I Learned!</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <img src="logo.png" height="68" width="68" alt="Today I Learned Logo" />
+          <h1>Today I Learned</h1>
+        </div><!-- class="logo" -->
+        <button class="btn btn-large btn-open">Share a fact</button>
+      </header>
+
+      <form class="fact-form hidden">
+        <input type="text" placeholder="Share a fact with the world..." />
+        <span>200</span>
+        <input type="text" placeholder="Trustworthy spurce..." />
+        <select>
+          <option value="">Choose category:</option>
+          <option value="technology">Technology</option>
+          <option value="science">Science</option>
+          <option value="finance">Finance</option>
+        </select>
+        <button class="btn btn-large">Post</button>
+      </form>
+
+      <main class="main">
+        <aside>
+          <ul>
+            <li class="category">
+              <button class="btn btn-all-categories">All</button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #3b82f6"
+              >
+                Technology
+              </button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #16a34a"
+              >
+                Science
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <section>
+          <ul class="facts-list">
+            <li class="fact">
+              <p>
+                React is being developed by Meta (formerly facebook)
+                <a
+                  class="source"
+                  href="https://opensource.fb.com/"
+                  target="_blank"
+                  >(Source)</a
+                >
+              </p>
+              <span class="tag" style="background-color: #3b82f6"
+                >technology</span
+              >
+              <div class="vote-buttons">
+                <button>👍 24</button>
+                <button>🤯 9</button>
+                <button>⛔️ 4</button>
+              </div>
+            </li>
+
+            <li class="fact">
+              <p>
+                Millennial dads spend 3 times as much time with their kids than
+                their fathers spent with them. In 1982, 43% of fathers had never
+                changed a diaper. Today, that number is down to 3%
+
+                <a
+                  class="source"
+                  href="https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids"
+                  target="_blank"
+                  >(Source)</a
+                >
+              </p>
+              <span class="tag" style="background-color: #eab308">society</span>
+              <div class="vote-buttons">
+                <button>👍 11</button>
+                <button>🤯 2</button>
+                <button>⛔️ 0</button>
+              </div>
+            </li><!-- class="fact" -->
+          </ul><!-- class="facts-list" -->
+        </section>
+      </main>
+    </div><!-- class="container" -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- 
+  **** Creating Your 1st Database ****
+  https://supabase.com/
+-->
+
+
+
+ <!-- 
+  ! check on TERMINAL:
+    npm -v   ==>   to check current version of npm on system
+    node -v  ==>   to check current version of node on system
+    sudo n lts ==> Use this command to install/update the latest LTS node release.
+  -->
+ <!-- 
+  *** Installing Node.js & Setting Up A React Project ***
+    1) Install Node.js
+      => [for 1st-time users] go to 'https://nodejs.org/en/' then click the one w/ 'LTS' & install to your sys
+    2) Go to folder where project resides in VS CODE terminal [View -> Terminal] then run command 'npm -v' to see if npm is installed & verify version as well 
+
+    3) Set up the React proj. using 'create react app' by typing in 'npx create-react-app today-i-learned' [npx create-react-app & the name of the project], hit return key & this will download packages fr the npm repository.; If it doesn't work or error has been recvd, add 'sudo' before the command used previously
+
+    4) Check the project folder TODAY-I-LEARNED: this now reflects a new folder called 'today-i-learned', the name given to this React project. Create another folder named 'v1' then grab the ff files & transfer inside it: data.js, index.html, logo.png, script.js & style.js 
+
+    5) Grab everything inside the 'today-i-learned' folder so that they are all outside w/ the 'v1' folder; when it's already empty, delete the 'today-i-learned' folder; So in the proj folder TODAY-I-LEARNED, the files 'v1' folder has the files created previously, plus the files that are just installed fr npm repo
+
+    6) project folder TODAY-I-LEARNED: {public: 'index.html' & src: 'index.js' & 'App.js'}
+    => node_modules folder ===> contains the npm packages that were installed
+    => public folder ===> only retain 'index.html' & delete everything else [favicon.ico, logo192.png, logo512.png, manifest.json, robots.txt]
+    => src ===> only retain 'index.js' & 'App.js' & delete everything else 
+
+    =>
+
+    7) {public: 'index.html' & src: 'index.js' & 'App.js'}
+    => index.js ===> the 1st file that will be loaded by the react application; delete the unnecessary lines:
+
+    *********************************************************************
+    import React from "react";
+    import ReactDOM from "react-dom/client";
+    import App from "./App";
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+    *********************************************************************
+    
+    8) => {src: App.js} ===> delete everything & this is what shd remain ('<h1>Hello World</h1>;' has been added afterwards for test purposes):
+
+      *********************************
+      function App() {
+        return <h1>Hello World</h1>;
+      }
+
+      export default App;
+      *********************************
+  
+    9) => {public: 'index.html' } ==> retain the ff code & delete everythins else:
+
+    10) Turn off 'Live Server' 
+    =====> TERMINal: npm run start
+    =====> BROWSER:
+            address bar: http://localhost:3000/
+            Hello World
+  -->
+

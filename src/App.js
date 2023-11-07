@@ -148,12 +148,14 @@ function isValidHttpUrl(string) {
 
 function NewFactForm({ setFacts, setShowForm }) {
   const [text, setText] = useState("");
+  // 68.10. ...& change the source state back to "" in NewFactForm ... let's now finish this by creating a so-called production build ... what we basically have right now are only these source (src) files & then we have the entire React library & all the other libraries inside the node_modules folder...but these are not what we can upload to a server...instead we need to create a production build & this will then bundle all these modules together & all the files that were created into just some HTML & JS... let us now go back to the Terminal & press on CTRL+C to stop running the app...but let's now do our production build... make sure you are inside the TODAY-I-LEARNED folder, then type 'npm run build'...this will now take some time...now all the files inside the src, public & node_modules are all bundled inside into just 1 or 2 or 3 files w/c are inside the 'build' folder, w/c we can then upload to a server... so the 'build' folder is the one that got created & so here we have the index.html, logo.png, the CSS & the JS...so all the JS (build>static>js) is simply placed in 1 file, basically an unreadable file w/c looks like complete gibberish but all the code that we wrote is actually in here together w/ all the rest of the JS... so that all got bundled into this 'build' folder w/c we can now upload to a web server.....
   // const [source, setSource] = useState("http://example.com");
   const [source, setSource] = useState("");
   const [category, setCategory] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const textLength = text.length;
-
+  // 69. DEPLOYING TO NETLIFY
+  // ... if app hasn't been uploaded yet on Gitlab or Github, this can also be manually uploaded on Netliy, just drag the 'build' folder
   // *********************************************************************
   async function handleSubmit(e) {
     // 1. *** PREVENT BROWSER RELOAD ***
@@ -308,6 +310,7 @@ function Fact({ fact, setFacts }) {
   const [isUpdating, setIsUpdating] = useState(false);
 
   //  ......
+  // 68.2. ... using a piece of state in creating isDisputed is not necessary at all bec. it can be completely calculated fr some other data that we already have & that is the 'fact' ... so fact.votesInteresting plus fact.votesMindblowing shd be less than votesFalse; ... so let's check this out on the browser.... press on the votesFalse to make the number more than the sum of votesInteresting & votesMindblowing ... & the [⛔️ DISPUTED] flag appeared but the color is the same as the rest of the text so we're not sure what happened here ... so let's create a class for 'disputed' (fr className="disputed") to add some styles ...
   const isDisputed =
     fact.votesInteresting + fact.votesMindblowing < fact.votesFalse;
 
@@ -344,6 +347,8 @@ function Fact({ fact, setFacts }) {
     <li className="fact">
       <p>
         {/* // ....... */}
+        {/* 68. FINISHING TOUCHES & CREATING A PRODUCTION BUILD */}
+        {/* 68.1. let's add some kind of label to effect when the votesFalse are more than the  votesInteresting & the votesMindblowing bec. that will probably mean that the 'fact' is NOT true; & this is also for the users to be aware of that; let's say if 'isDisputed', & we haven't created that variable yet, for now let's now create the JSX, & again we're using our ternary here, then let's place a span here, w/ the className of "disputed", w/c we will create later as well, then add some brackets here, 'DISPUTED'; or else, just don't render anything here; just note that this [DISPUTED] does not exist yet, let's add some emoji to make it a bit more visible, [⛔️ DISPUTED]; NOW, all we need to do is create 'isDisputed'..... */}
         {isDisputed ? <span className="disputed">[⛔️ DISPUTED]</span> : null}
         {fact.text}
         <a className="source" href={fact.source} target="_blank">
